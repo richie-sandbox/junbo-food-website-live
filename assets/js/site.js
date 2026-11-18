@@ -2,15 +2,15 @@
  *
  * SETUP: paste your email tool's form endpoint into FORM_ENDPOINT.
  *  - Kit (ConvertKit): https://app.kit.com/forms/<FORM_ID>/subscriptions
- *    Add a custom field called "Next sauce" in Kit first (its key is next_sauce).
+ *    The vote is saved in the Kit custom field with key "vote".
  *  - Mailchimp: use the embedded form "action" URL and add a merge field "VOTE".
  *    Set EMAIL_FIELD to "EMAIL" and VOTE_FIELD to "VOTE".
  * While FORM_ENDPOINT is empty nothing can be saved, so the form tells
  * visitors sign-ups open soon (it never pretends to have saved an email).
  */
-const FORM_ENDPOINT = '';
+const FORM_ENDPOINT = 'https://app.kit.com/forms/10210327/subscriptions'; // Kit form "baab408a72"
 const EMAIL_FIELD = 'email_address';
-const VOTE_FIELD = 'fields[next_sauce]'; // Kit custom field "Next sauce" (key: next_sauce)
+const VOTE_FIELD = 'fields[vote]'; // Kit custom field "Vote for Next Sauce" (key: vote)
 
 (function () {
   const year = document.getElementById('year');
@@ -59,7 +59,7 @@ const VOTE_FIELD = 'fields[next_sauce]'; // Kit custom field "Next sauce" (key: 
       await fetch(FORM_ENDPOINT, { method: 'POST', body: body, mode: 'no-cors' });
       form.reset();
       if (otherBox) otherBox.hidden = true;
-      say(vote ? "Thanks, your vote is in and you're on the list." : "Thanks, you're on the list.", 'ok');
+      say(vote ? "Thanks, your vote is in. Check your inbox to confirm your email." : "Thanks. Check your inbox to confirm your email.", 'ok');
     } catch (err) {
       say('Something went wrong. Please try again in a moment.', 'error');
     } finally {
