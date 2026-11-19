@@ -11,4 +11,4 @@ Plain HTML, CSS and a little JavaScript. No build step. Everything in this repos
 - Photos: compressed `.webp` files in `assets/img/`, always with alt text
 
 ## Publish
-Settings → Pages → Source: **Deploy from a branch**, branch `main`, folder `/ (root)`. Custom domain `junbofood.com`, Enforce HTTPS on. Every change merged to `main` goes live within a few minutes.
+Settings → Pages → Source: **GitHub Actions** (the workflow in `.github/workflows/pages.yml` publishes the site). Custom domain `junbofood.com`, Enforce HTTPS on. Every change merged to `main` goes live within a few minutes.
